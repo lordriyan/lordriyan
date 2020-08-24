@@ -1,1 +1,7 @@
-[![Riyan's github stats](https://github-readme-stats.vercel.app/api?username=lordriyan&show_icons=true&count_private=true&title_color=874e9a&text_color=222222&icon_color=874e9a&include_all_commits=true)](https://github.com/anuraghazra/github-readme-stats)
+# Hello there :wave:
+<p align="center">
+  My stats :<br>
+  <img src="https://github-readme-stats.vercel.app/api?username=lordriyan&show_icons=true&count_private=true&include_all_commits=true" />
+  <br>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=lordriyan&layout=compact&card_width=445" />
+</p>
