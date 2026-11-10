@@ -1,69 +1,24 @@
-# Licensed under The Unlicense
-# Feel free to reuse, edit and redistribute this workflow as you wish, no credits needed
-# See https://github.com/lowlighter/metrics for documentation about how to use metrics action
-
-name: Metrics
+name: Github Metrics
 on:
-  # 🌏 Think about the planet! No need to update stats too frequently
   schedule: [{cron: "0 16 * * *"}]
-  # 💡 The following line lets you run workflow manually from the action tab!
   workflow_dispatch:
 jobs:
   metrics:
     runs-on: ubuntu-latest
     steps:
 
-      - name: 🦑 Medias
+      - name: Left Side
         if: ${{ success() || failure() }}
         uses: stalomeow/metrics@projects-v2
         with:
-          filename: medias.svg
-          token: ${{ secrets.TOKEN }}
-          base: ""
-          config_order: music
-          output_action: gist
-          committer_gist: ${{ secrets.GIST }}
-          plugin_music_token: ${{ secrets.LASTFM_TOKEN }}
-          plugin_music: yes
-          plugin_music_provider: lastfm
-          plugin_music_user: LordRiyan
-
-      - name: 🦑 Achievements
-        if: ${{ success() || failure() }}
-        uses: stalomeow/metrics@projects-v2
-        with:
-          filename: achievements.svg
-          token: ${{ secrets.TOKEN }}
-          base: ""
-          output_action: gist
-          committer_gist: ${{ secrets.GIST }}
-          plugin_achievements: yes
-          plugin_achievements_display: compact
-          plugin_fortune: yes
-
-      - name: 🦑 Sponsors
-        if: ${{ success() || failure() }}
-        uses: stalomeow/metrics@projects-v2
-        with:
-          filename: sponsors.svg
-          token: ${{ secrets.TOKEN }}
-          base: ""
-          output_action: gist
-          committer_gist: ${{ secrets.GIST }}
-          plugin_sponsors: yes
-          plugin_sponsors_past: yes
-
-      - name: 🦑 General
-        if: ${{ success() || failure() }}
-        uses: stalomeow/metrics@projects-v2
-        with:
-          filename: general.svg
+          filename: github-metrics-left.svg
           token: ${{ secrets.TOKEN }}
           base: header
           base_indepth: yes
-          config_order: base.header, isocalendar, languages, notable, discussions, topics
           output_action: gist
           committer_gist: ${{ secrets.GIST }}
+          config_order: base.header, isocalendar, languages, notable, discussions, topics
+          
           plugin_isocalendar: yes
           plugin_languages: yes
           plugin_languages_ignored: html, css, tex, less, dockerfile, makefile, qmake, lex, cmake, shell, gnuplot, vue, scala, c, c++, python, ejs
@@ -71,8 +26,31 @@ jobs:
           plugin_languages_sections: most-used, recently-used
           plugin_languages_indepth: yes
           plugin_languages_limit: 2
+          plugin_notable: yes
+          plugin_discussions: yes
           plugin_topics: yes
           plugin_topics_limit: 0
           plugin_topics_mode: icons
-          plugin_notable: yes
-          plugin_discussions: yes
+
+      - name: Right Side
+        if: ${{ success() || failure() }}
+        uses: stalomeow/metrics@projects-v2
+        with:
+          filename: github-metrics-right.svg
+          token: ${{ secrets.TOKEN }}
+          base: ""
+          output_action: gist
+          committer_gist: ${{ secrets.GIST }}
+          config_order: achievements, leetcode, sponsors, fortune, music
+          
+          plugin_achievements: yes
+          plugin_achievements_display: compact
+          plugin_sponsors: yes
+          plugin_sponsors_past: yes
+          plugin_fortune: yes
+          plugin_leetcode: yes
+          plugin_leetcode_sections: solved, skills, recent
+          plugin_music_token: ${{ secrets.LASTFM_TOKEN }}
+          plugin_music: yes
+          plugin_music_provider: lastfm
+          plugin_music_user: LordRiyan
