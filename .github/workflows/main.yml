@@ -45,6 +45,7 @@ jobs:
           
           plugin_achievements: yes
           plugin_achievements_display: compact
+          plugin_achievements_ignored: projects
           plugin_sponsors: yes
           plugin_sponsors_past: yes
           plugin_fortune: yes
